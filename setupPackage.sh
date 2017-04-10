@@ -5,23 +5,25 @@
 
 wget https://www.acm.org/binaries/content/assets/publications/consolidated-tex-template/acmart.zip
 
-pkgroot=acmart_1.33-0
+pkgroot=acmart_1.33-1
 TEXMF=`kpsewhich -var-value TEXMFLOCAL`
 # clean up previous attempt
 rm -r $pkgroot 
 rm -r acmart
 
 clsloc=${pkgroot}/${TEXMF}/tex
- 
+bstloc=${pkgroot}/${TEXMF}/bibtex/bst 
 mkdir -p $clsloc
+mkdir -p $bstloc
+
 unzip acmart.zip
 
 cd acmart
 
 latex acmart.ins
 
-cp *.cls *.bst ../$clsloc
-
+cp *.cls ../$clsloc
+cp *.bst ../$bstloc
 cd ..
 
 # Setup control file
@@ -30,7 +32,7 @@ mkdir $pkgroot/DEBIAN
 
 cat << EOF > ${pkgroot}/DEBIAN/control
 Package: acmart
-Version: 1.33-0
+Version: 1.33-1
 Section: base
 Priority: optional
 Architecture: all
