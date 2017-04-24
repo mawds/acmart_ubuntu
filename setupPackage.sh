@@ -2,23 +2,22 @@
 
 # Script to prepare the package structure for the deb
 
-
-wget https://www.acm.org/binaries/content/assets/publications/consolidated-tex-template/acmart.zip
+wget https://www.acm.org/binaries/content/assets/publications/consolidated-tex-template/acmart-master.zip
 
 pkgroot=acmart_1.33-1
 TEXMF=`kpsewhich -var-value TEXMFLOCAL`
 # clean up previous attempt
 rm -r $pkgroot 
-rm -r acmart
+rm -r acmart-master
 
 clsloc=${pkgroot}/${TEXMF}/tex
 bstloc=${pkgroot}/${TEXMF}/bibtex/bst 
 mkdir -p $clsloc
 mkdir -p $bstloc
 
-unzip acmart.zip
+unzip acmart-master.zip
 
-cd acmart
+cd acmart-master
 
 latex acmart.ins
 
