@@ -2,22 +2,22 @@
 
 # Script to prepare the package structure for the deb
 
-wget https://www.acm.org/binaries/content/assets/publications/consolidated-tex-template/acmart-master.zip
+wget https://www.acm.org/binaries/content/assets/publications/consolidated-tex-template/acmart-primary.zip
 
-pkgroot=acmart_1.33-1
+pkgroot=acmart_1.82-1
 TEXMF=`kpsewhich -var-value TEXMFLOCAL`
 # clean up previous attempt
 rm -r $pkgroot 
-rm -r acmart-master
+rm -r acmart-primary
 
 clsloc=${pkgroot}/${TEXMF}/tex
 bstloc=${pkgroot}/${TEXMF}/bibtex/bst 
 mkdir -p $clsloc
 mkdir -p $bstloc
 
-unzip acmart-master.zip
+unzip acmart-primary.zip
 
-cd acmart-master
+cd acmart-primary
 
 latex acmart.ins
 
@@ -31,7 +31,7 @@ mkdir $pkgroot/DEBIAN
 
 cat << EOF > ${pkgroot}/DEBIAN/control
 Package: acmart
-Version: 1.33-1
+Version: 1.82-1
 Section: base
 Priority: optional
 Architecture: all
